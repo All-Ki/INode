@@ -1,34 +1,101 @@
 <script lang="ts">
-  import svelteLogo from "./assets/svelte.svg";
-  import viteLogo from "/vite.svg";
-  import Counter from "./lib/Counter.svelte";
-  import Node from "./lib/node/Node.svelte";
+  import { writable } from "svelte/store";
+  import {
+    SvelteFlow,
+    Background,
+    Controls,
+    MiniMap,
+    Position,
+    type Node,
+    type Edge,
+  } from "@xyflow/svelte";
+
+  import ColorSelectorNode from "./lib/node/ColorSelectorNode.svelte";
+
+  // 👇 this is important! You need to import the styles for Svelte Flow to work
+  import "@xyflow/svelte/dist/style.css";
+
+  const nodeTypes = {
+    selectorNode: ColorSelectorNode,
+  };
+
+  const bgColor = writable("#1A192B");
+
+  const initialNodes: Node[] = [
+    {
+      id: "1",
+      type: "input",
+      data: { label: "An input node" },
+      position: { x: 0, y: 50 },
+      sourcePosition: Position.Right,
+    },
+    {
+      id: "2",
+      type: "selectorNode",
+      data: { color: bgColor },
+      style: "border: 1px solid #777; padding: 10px;",
+      position: { x: 300, y: 50 },
+    },
+    {
+      id: "3",
+      type: "output",
+      data: { label: "Output A" },
+      position: { x: 650, y: 25 },
+      targetPosition: Position.Left,
+    },
+    {
+      id: "4",
+      type: "output",
+      data: { label: "Output B" },
+      position: { x: 650, y: 100 },
+      targetPosition: Position.Left,
+    },
+  ];
+
+  const initialEdges: Edge[] = [
+    {
+      id: "e1-2",
+      source: "1",
+      target: "2",
+      animated: true,
+      style: "stroke: #fff;",
+    },
+    {
+      id: "e2a-3",
+      source: "2",
+      target: "3",
+      sourceHandle: "a",
+      animated: true,
+      style: "stroke: #fff;",
+    },
+    {
+      id: "e2b-4",
+      source: "2",
+      target: "4",
+      sourceHandle: "b",
+      animated: true,
+      style: "stroke: #fff;",
+    },
+  ];
+
+  const nodes = writable<Node[]>(initialNodes);
+  const edges = writable(initialEdges);
 </script>
 
 <main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+  <div style="height:100vh; width:100vw">
+    <SvelteFlow
+      {nodes}
+      {edges}
+      {nodeTypes}
+      style="background: {$bgColor}"
+      fitView
+    >
+      <Background />
+      <Controls />
+      <MiniMap />
+    </SvelteFlow>
   </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Node />
-  </div>
-
-  <p>
-    Check out <a
-      href="https://github.com/sveltejs/kit#readme"
-      target="_blank"
-      rel="noreferrer">SvelteKit</a
-    >, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">Click on the Vite and Svelte logos to learn more</p>
 </main>
 
 <style>

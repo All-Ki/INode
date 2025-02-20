@@ -57,17 +57,19 @@
   const n = new SampleNode({ a: new NodeIoType() }, { b: new NodeIoType() });
 </script>
 
-<span>
-  <h1>{n.name}</h1>
-  <ul>
-    {#each { length: n.countIn }}
-      <li>itesm</li>
-    {/each}
-  </ul>
+<span class="flex flex-col">
+  <span>{n.name}</span>
+  <div class="flex flex-row">
+    <ul>
+      {#each Object.keys(n.typeIn) as key}
+        <li>{key}</li>
+      {/each}
+    </ul>
 
-  <ul>
-    {#each { length: n.countOut }}
-      <li>item</li>
-    {/each}
-  </ul>
+    <ul>
+      {#each Object.keys(n.typeOut) as key}
+        <li>{key}</li>
+      {/each}
+    </ul>
+  </div>
 </span>
