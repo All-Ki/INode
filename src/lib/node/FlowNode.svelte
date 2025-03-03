@@ -12,7 +12,9 @@
   class SampleNode extends Node<TIn, TOut> {
     public name: string = "SampleNode";
 
-    public apply(input: NodeIoListValues<TIn>): NodeIoListValues<TOut> {
+    public async apply(
+      input: NodeIoListValues<TIn>
+    ): Promise<NodeIoListValues<TOut>> {
       return {
         b: new NodeIoValue(new NodeIoType(), input.a.value),
         d: new NodeIoValue(new NodeIoType(), input.c.value),

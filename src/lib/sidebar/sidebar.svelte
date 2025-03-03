@@ -1,7 +1,16 @@
 <script lang="ts">
-  import { writable } from "svelte/store";
-  import { nodes, edges, bgColor, nodeTypes } from "@/lib/store.svelte"; // Update path as needed
+  import { writable, type Writable } from "svelte/store";
+  import { bgColor, nodeTypes } from "@/lib/store.svelte"; // Update path as needed
   import { v4 as uuidv4 } from "uuid";
+  import type { Edge, Node } from "@xyflow/svelte";
+
+  interface props {
+    nodes: Writable<Node[]>;
+    edges: Writable<Edge[]>;
+  }
+
+  const { nodes, edges }: props = $props();
+
   const isSidebarVisible = writable(true);
   const nodeType = writable("baseNode");
 
@@ -32,6 +41,7 @@
   class="absolute top-1/2 transform -translate-y-1/2 z-50 bg-gray-700 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 transition-all duration-300"
   class:left-48={$isSidebarVisible}
   on:click={toggleSidebar}
+  aria-label="Toggle sidebar"
 >
   <svg
     class="w-6 h-6 transition-transform duration-300"

@@ -1,0 +1,57 @@
+{
+    "title": "Kanban",
+    "cols": [
+        {
+            "title": "Bugs",
+            "tasks": [],
+            "id": "dy9k9q60ld3lx1yd2p0ceoio",
+            "color": "#eb144c"
+        },
+        {
+            "title": "To-Do",
+            "tasks": [
+                {
+                    "text": "allow user defined nodes",
+                    "id": "f7jty9324swhpjnnde7daztx"
+                },
+                {
+                    "text": "Add input-type nodes",
+                    "id": "q14hlkam4ue6kvqlzvxlt3so"
+                },
+                {
+                    "text": "Use boards as nodes",
+                    "id": "b116g47shmiwg2g85jj7g90x"
+                },
+                {
+                    "text": "Save boards",
+                    "id": "xyilrku8fi9320wv7r5x622m"
+                },
+                {
+                    "text": "Add a way to show types on edges",
+                    "id": "fbn2j1ol5ir8y5itvqwti4oa"
+                },
+                {
+                    "text": "Find a way to check types on nodes",
+                    "id": "f4zg14bbn71jmzcczssm3ukx"
+                }
+            ],
+            "id": "ogegkkzq51a02ywcw3bb90sm",
+            "color": "#fcb900"
+        },
+        {
+            "title": "Doing",
+            "tasks": [],
+            "id": "z8nseya0w9mzlyo5ygpbxckq",
+            "color": "#0693e3"
+        },
+        {
+            "title": "Done",
+            "tasks": [],
+            "id": "bq99s9em5857ujsx3d7vemts",
+            "color": "#00d084"
+        }
+    ],
+    "autosave": true,
+    "saveToFile": true,
+    "timestamp": 1740950689964
+}

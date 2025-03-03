@@ -40,5 +40,7 @@ export abstract class Node<TIn extends NodeIoList, TOut extends NodeIoList> {
   }
   public name: string = "node";
 
-  public abstract apply(input: NodeIoListValues<TIn>): NodeIoListValues<TOut>;
+  public abstract apply(
+    input: NodeIoListValues<TIn>
+  ): Promise<NodeIoListValues<TOut>>;
 }
